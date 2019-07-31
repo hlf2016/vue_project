@@ -27,8 +27,6 @@
 </template>
 
 <script>
-import _ from 'lodash'
-
 export default {
   name: 'About',
   created () {},
@@ -55,7 +53,6 @@ export default {
         for (let r of radioList) {
           this.radioList.push(r)
         }
-        console.log(_.uniq([2, 1, 2]))
       })
       // 排行榜信息
       this.$api.about.topList().then(res => {

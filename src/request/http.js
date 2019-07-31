@@ -7,12 +7,6 @@ import store from '../store'
 import router from '../router'
 import '../cube-ui'
 
-// 请求超时时间
-axios.defaults.timeout = 10000
-
-// post请求头
-axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8'
-
 /**
  * 提示函数
  * 禁止点击蒙层、显示一秒后关闭
