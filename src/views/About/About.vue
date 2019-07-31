@@ -18,11 +18,15 @@
         </div>
       </div>
     </div>
+    <div class="topList">
+      <p class="topListTitle">
+        <span class="iconfont icon-paihangbang"></span>
+      </p>
+    </div>
   </div>
 </template>
 
 <script>
-import { recommend } from '@/request/api.js'
 import _ from 'lodash'
 
 export default {
@@ -40,18 +44,22 @@ export default {
   methods: {
     // 获取数据
     onLoad () {
-      // 调用api接口，并且提供了两个参数
-      recommend.then(res => {
+      // 推荐信息
+      this.$api.about.recommend().then(res => {
         // 获取数据成功后的操作
-        const slider = res.data.slider
+        const slider = res.data.data.slider
         for (let i of slider) {
           this.items.push({ image: i })
         }
-        const radioList = res.data.radioList
+        const radioList = res.data.data.radioList
         for (let r of radioList) {
           this.radioList.push(r)
         }
         console.log(_.uniq([2, 1, 2]))
+      })
+      // 排行榜信息
+      this.$api.about.topList().then(res => {
+        console.log(res)
       })
     }
   }
@@ -67,6 +75,9 @@ export default {
     background #ccc
     .cube-slide >>> img
       width 100%
+  .topList
+    .topListTitle
+      padding 10px 2px
   .radioList
     .radioTitle
       padding 10px 2px
