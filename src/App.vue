@@ -1,9 +1,9 @@
 <template>
   <div id="app">
-    <!-- <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>-->
+    <div v-if="!network">
+      <h3>我没网了</h3>
+      <div @click="onRefresh">刷新</div>
+    </div>
     <router-view />
   </div>
 </template>
@@ -16,3 +16,19 @@
   text-align center
   color #2c3e50
 </style>
+
+<script>
+import { mapState } from 'vuex'
+export default {
+  name: 'App',
+  computed: {
+    ...mapState(['network'])
+  },
+  methods: {
+    // 通过跳转一个空页面再返回的方式来实现刷新当前页面数据的目的
+    onRefresh () {
+      this.$router.replace('/refresh')
+    }
+  }
+}
+</script>
